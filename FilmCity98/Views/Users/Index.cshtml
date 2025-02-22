@@ -1,0 +1,73 @@
+﻿@model IEnumerable<UserViewModel>
+
+@{
+    ViewData["Title"] = "Users";
+}
+<div class="container mt-5">
+<div class="card shadow-lg border-0 mb-4">
+    <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="card-title mb-0 font-weight-bold">Users List</h2>
+        </div>
+        <form method="get" action="@Url.Action("Index", "Users")" class="mb-4">
+            <div class="input-group shadow-sm">
+                <input type="text"
+                       name="searchTitle"
+                       class="form-control border-end-0"
+                           placeholder="Search by User Name"
+                       value="@ViewBag.SearchTerm">
+                <button type="submit" class="btn btn-primary px-4">
+                    <i class="bi bi-search me-2"></i>Search
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+    <div class="card shadow-lg border-0">
+        <div class="card-body p-0">
+            <table class="table table-hover mb-0">
+                <thead>
+                    <tr class="bg-primary bg-gradient text-white">
+                        <th class="px-4 py-3">First Name</th>
+                        <th class="px-4 py-3">Last Name</th>
+                        <th class="px-4 py-3">Username</th>
+                        <th class="px-4 py-3">Email</th>
+                        <th class="px-4 py-3">Roles</th>
+                        <th class="px-4 py-3" style="width: 15%;">Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white">
+                    @foreach (var user in Model)
+                    {
+                        <tr class="border-bottom">
+                            <td class="px-4 py-3">@user.FirstName</td>
+                            <td class="px-4 py-3">@user.LastName</td>
+                            <td class="px-4 py-3">@user.UserName</td>
+                            <td class="px-4 py-3">@user.Email</td>
+                            <td class="px-4 py-3">@string.Join(" , ", user.Roles)</td>
+                            <td class="px-4 py-3">
+                                <div class="dropdown">
+                                    <button class="btn btn-light btn-sm dropdown-toggle border shadow-sm"
+                                            type="button"
+                                            id="actionMenuButton"
+                                            data-bs-toggle="dropdown"
+                                            aria-expanded="false">
+                                        <i class="bi bi-three-dots-vertical"></i>
+                                    </button>
+                                    <ul class="dropdown-menu shadow-sm" aria-labelledby="actionMenuButton">
+                                        <li>
+                                            <a class="dropdown-item py-2 px-4" asp-controller="Users" asp-action="ManageRoles" asp-route-userId="@user.Id">
+                                                <i class="bi bi-gear me-2"></i>Manage RolesManage Roles
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

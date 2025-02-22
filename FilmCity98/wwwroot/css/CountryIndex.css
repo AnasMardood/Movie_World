@@ -1,0 +1,59 @@
+﻿/* تحسين عرض الجدول */
+.table {
+    border-radius: 5px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+/* تحسين عرض الأزرار */
+.btn {
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+    .btn:hover {
+        transform: scale(1.05);
+    }
+
+/* تحسين عرض الروابط */
+a {
+    text-decoration: none;
+}
+
+/* تحسين عنوان الصفحة */
+h1 {
+    color: #343a40;
+    font-size: 2.5rem;
+    letter-spacing: 1px;
+}
+
+/* Edit Page*/
+
+/* تحسين عرض البطاقة */
+.card {
+    border-radius: 10px;
+    background-color: #f8f9fa;
+}
+
+/* تحسين عرض الأزرار */
+.btn {
+    font-weight: 600;
+    transition: all 0.3s ease-in-out;
+}
+
+    .btn:hover {
+        transform: scale(1.05);
+    }
+
+/* تحسين حقل الإدخال */
+.form-control-lg {
+    border-radius: 8px;
+}
+
+/* تحسين عنوان الصفحة */
+h1 ,h4 {
+    color: #343a40;
+    font-size: 2.5rem;
+    letter-spacing: 1px;
+    font-weight: 700;
+}

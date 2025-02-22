@@ -1,0 +1,217 @@
+﻿@model IEnumerable<FilmCity98.Models.Movie>
+
+@{
+    ViewData["Title"] = "Movie List";
+}
+
+<div class="container container-fluid  mt-5">
+    <div class="card shadow-lg border-0 mb-4">
+        <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 class="card-title mb-0 font-weight-bold">Movie List</h2>
+                <a class="btn btn-primary" href="@Url.Action("Create", "Movies")">
+                    <i class="bi bi-plus-lg me-2"></i>Add New Movie
+                </a>
+            </div>
+
+            <form method="get" action="@Url.Action("Index", "Movies")" class="mb-4">
+                <div class="input-group shadow-sm">
+                    <input type="text" 
+                           name="searchTitle" 
+                           class="form-control border-end-0" 
+                           placeholder="Search by Title" 
+                           value="@ViewBag.SearchTerm">
+                    <button type="submit" class="btn btn-primary px-4">
+                        <i class="bi bi-search me-2"></i>Search
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="card shadow-lg border-0">
+        <div class="card-body p-0">
+            <div class="table-responsive ">
+                <table class="table table-hover  text-lg-start">
+                    <thead>
+                        <tr class="bg-primary bg-gradient text-white">
+                            <th class="px-4 py-3">Title</th>
+                            <th class="px-4 py-3">Description</th>
+                            <th class="px-4 py-3">Release Date</th>
+                            <th class="px-4 py-3">Rating</th>
+                            <th class="px-4 py-3">Country</th>
+                            <th class="px-4 py-3">Director</th>
+                            <th class="px-4 py-3">Language</th>
+                            <th class="px-4 py-3">Category</th>
+                            <th class="px-4 py-3">BoxOffice</th>
+                            <th class="px-4 py-3">Trailer</th>
+                            <th class="px-4 py-3">Movie Hero</th>
+                            <th class="px-4 py-3">Producers</th>
+                            <th class="px-4 py-3">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white">
+                        @foreach (var movie in Model)
+                        {
+                            <tr class="border-bottom">
+                                <td class="px-4 py-3">@movie.Title</td>
+                                <td class="px-4 py-3">
+                                    <div class="text-truncate" style="max-width: 200px;" title="@movie.Description">
+                                        @movie.Description
+                                    </div>
+                                </td>
+                                <td class="px-4 py-3">@movie.ReleaseDate.ToString("yyyy-MM-dd")</td>
+                                <td class="px-4 py-3">
+                                    <span class="badge bg-success">@movie.Rating</span>
+                                </td>
+                                <td class="px-4 py-3">@movie.Country.Name</td>
+                                <td class="px-4 py-3">@movie.Director.Name</td>
+                                <td class="px-4 py-3">@movie.Language.Name</td>
+                                <td class="px-4 py-3">
+                                    <span class="badge bg-info">@movie.Category.Name</span>
+                                </td>
+                                <td class="px-4 py-3">@movie.BoxOffice</td>
+                                <td class="px-4 py-3">
+                                    <a href="@movie.TrailerURL" 
+                                       target="_blank" 
+                                       class="btn btn-sm btn-outline-primary">
+                                        <i class="bi bi-play-circle me-1"></i>Watch
+                                    </a>
+                                </td>
+                                <td class="px-4 py-3">
+                                    <div class="text-truncate" style="max-width: 200px;" 
+                                         title="@string.Join(", ", movie.MovieActors.Select(ma => ma.Actor.Name))">
+                                        @string.Join(", ", movie.MovieActors.Select(ma => ma.Actor.Name))
+                                    </div>
+                                </td>
+                                <td class="px-4 py-3">
+                                    <div class="text-truncate" style="max-width: 200px;"
+                                         title="@string.Join(", ", movie.MovieProducers.Select(ma => ma.Producer.Name))">
+                                        @string.Join(", ", movie.MovieProducers.Select(ma => ma.Producer.Name))
+                                    </div>
+                                </td>
+                                <td class="px-4 py-3">
+                                    <div class="dropdown">
+                                        <button class="btn btn-light btn-sm dropdown-toggle border shadow-sm" 
+                                                type="button" 
+                                                id="actionMenuButton_@movie.MovieId" 
+                                                data-bs-toggle="dropdown" 
+                                                aria-expanded="false">
+                                            <i class="bi bi-three-dots-vertical"></i>
+                                        </button>
+                                        <ul class="dropdown-menu shadow-sm" 
+                                            aria-labelledby="actionMenuButton_@movie.MovieId">
+                                            <li>
+                                                <a class="dropdown-item py-2 px-4" 
+                                                   href="@Url.Action("Details", "Movies", new { id = movie.MovieId })">
+                                                    <i class="bi bi-eye me-2"></i>Details
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item py-2 px-4" 
+                                                   href="@Url.Action("Edit", "Movies", new { id = movie.MovieId })">
+                                                    <i class="bi bi-pencil-square me-2"></i>Edit
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item py-2 px-4 text-danger" 
+                                                   href="@Url.Action("Delete", "Movies", new { id = movie.MovieId })">
+                                                    <i class="bi bi-trash me-2"></i>Delete
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<style>
+
+    /* تحسين مظهر البطاقات */
+    .card {
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    /* تحسين مظهر الجدول */
+    .table {
+        width: 100%; /* استخدام كامل عرض الصفحة */
+        table-layout: auto; /* تجنب تشويه الجدول وجعل الأعمدة قابلة لتغيير الحجم حسب المحتوى */
+    }
+
+   
+    .table th {
+        font-weight: 600;
+        border: none;
+    }
+
+    .table-responsive {
+        overflow-x: auto; /* لتمكين التمرير الأفقي على الشاشات الصغيرة */
+        -webkit-overflow-scrolling: touch; /* تحسين التمرير على الأجهزة اللوحية والهواتف */
+    }
+
+    .table td {
+        vertical-align: middle;
+        border-color: #f0f0f0;
+    }
+
+    .table tbody tr:hover {
+        background-color: #f8f9fa;
+    }
+
+    /* تحسين مظهر الشارات */
+    .badge {
+        font-weight: 500;
+        padding: 0.5em 0.8em;
+        border-radius: 6px;
+    }
+
+    /* تحسين مظهر القائمة المنسدلة */
+    .dropdown-menu {
+        border: none;
+        border-radius: 8px;
+        min-width: 150px;
+    }
+
+    .dropdown-item {
+        transition: background-color 0.2s;
+    }
+
+    .dropdown-item:hover {
+        background-color: #f8f9fa;
+    }
+
+    /* تحسين مظهر الأزرار */
+    .btn-light {
+        background-color: #ffffff;
+        border-color: #e0e0e0;
+    }
+
+    .btn-light:hover {
+        background-color: #f8f9fa;
+        border-color: #d0d0d0;
+    }
+
+    /* تحسين مظهر حقل البحث */
+    .input-group {
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .input-group .form-control:focus {
+        box-shadow: none;
+        border-color: #dee2e6;
+    }
+
+    /* تحسين النص المقتطع */
+    .text-truncate {
+        cursor: help;
+    }
+</style>

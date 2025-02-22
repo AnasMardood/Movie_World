@@ -1,0 +1,76 @@
+﻿@model FilmCity98.Models.Movie
+
+@{
+    ViewData["Title"] = "Movie Details";
+}
+
+<h1 class="text-center my-4">Movie Details</h1>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow p-4">
+                <h4 class="card-title text-center mb-4"> Movie Information</h4>
+                <dl class="row">
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.Title)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.Title)
+                    </dd>
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.Description)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.Description)
+                    </dd>
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.ReleaseDate)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.ReleaseDate)
+                    </dd>
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.PosterUrl)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.PosterUrl)
+                    </dd>
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.BoxOffice)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.BoxOffice)
+                    </dd>
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.CategoryId ) 
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.CategoryId )
+                    </dd>
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.DirectorId)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.DirectorId)
+                    </dd>
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.LanguageId)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.LanguageId)
+                    </dd>
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.CountryId)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.CountryId)
+                    </dd>
+                </dl>
+                <div class="text-center mt-4">
+                    <a asp-action="Index" class="btn btn-secondary btn-lg ml-3">Back to List</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,82 @@
+﻿@model IEnumerable<FilmCity98.Models.Country>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="container mt-5">
+<div class="card shadow-lg border-0 mb-4">
+    <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="card-title mb-0 font-weight-bold">Country List</h2>
+                <a class="btn btn-primary" href="@Url.Action("Create", "Countries")">
+                <i class="bi bi-plus-lg me-2"></i>Add New Country
+            </a>
+        </div>
+
+            <form method="get" action="@Url.Action("Index", "Countries")" class="mb-4">
+            <div class="input-group shadow-sm">
+                <input type="text"
+                       name="searchTitle"
+                       class="form-control border-end-0"
+                       placeholder="Search by Name"
+                       value="@ViewBag.SearchTerm">
+                <button type="submit" class="btn btn-primary px-4">
+                    <i class="bi bi-search me-2"></i>Search
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+    <div class="card shadow-lg border-0">
+        <div class="card-body p-0">
+            <table class="table table-hover mb-0">
+                <thead>
+                    <tr class="bg-primary bg-gradient text-white">
+                        <th class="px-4 py-3">Name</th>
+                        <th class="px-4 py-3" style="width: 15%;">Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white">
+                    @foreach (var item in Model)
+                    {
+                        <tr class="border-bottom">
+                            <td class="px-4 py-3">@item.Name</td>
+                            <td class="px-4 py-3">
+                                <div class="dropdown">
+                                    <button class="btn btn-light btn-sm dropdown-toggle border shadow-sm"
+                                            type="button"
+                                            id="actionMenuButton"
+                                            data-bs-toggle="dropdown"
+                                            aria-expanded="false">
+                                        <i class="bi bi-three-dots-vertical"></i>
+                                    </button>
+                                    <ul class="dropdown-menu shadow-sm" aria-labelledby="actionMenuButton">
+                                        <li>
+                                            <a class="dropdown-item py-2 px-4"
+                                               href="@Url.Action("Details", "Countries", new { id = item.Id })">
+                                                <i class="bi bi-info-circle me-2"></i>Details
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item py-2 px-4"
+                                               href="@Url.Action("Edit", "Countries", new { id = item.Id })">
+                                                <i class="bi bi-pencil-square me-2"></i>Edit
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item py-2 px-4 text-danger"
+                                               href="@Url.Action("Delete", "Countries", new { id = item.Id })">
+                                                <i class="bi bi-trash me-2"></i>Delete
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,21 @@
+﻿.profile-picture {
+    display: block;
+    margin: 0 auto; /* لتوسيط الصورة أفقياً */
+    max-width: 450px; /* تحديد عرض أقصى للصورة */
+    max-height: 450px; /* تحديد ارتفاع أقصى للصورة */
+    width: auto; /* السماح بتغيير العرض بناءً على النسبة */
+    height: auto; /* السماح بتغيير الارتفاع بناءً على النسبة */
+    border-radius: 20%; /* جعل الصورة دائرية */
+    border: 2px solid #ddd; /* إضافة حد */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* إضافة ظل */
+}
+
+.custom-file {
+    text-align: center; /* توسيط النصوص */
+}
+
+.avatar {
+    height: 40px;
+    width: 40px;
+    object-fit: cover;
+}

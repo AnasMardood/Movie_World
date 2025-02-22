@@ -1,0 +1,118 @@
+﻿@model FilmCity98.ViewModels.MovieViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+<div class="container mt-5">
+    <div class="card shadow-lg">
+        <div class="card-header bg-secondary  text-white">
+            <h2 class="text-center">Edit Movie</h2>
+        </div>
+        <div class="card-body">
+            <form asp-action="Edit" method="post">
+                <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="Title" class="form-label">Title</label>
+                        <input asp-for="Title" class="form-control" placeholder="Enter movie title" />
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="ReleaseDate" class="form-label">Release Date</label>
+                        <input asp-for="ReleaseDate" type="date" class="form-control" />
+                        <span asp-validation-for="ReleaseDate" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 mb-3">
+                        <label asp-for="Description" class="form-label">Description</label>
+                        <textarea asp-for="Description" class="form-control" rows="3" placeholder="Enter movie description"></textarea>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="PosterUrl" class="form-label">Poster URL</label>
+                        <input asp-for="PosterUrl" class="form-control" placeholder="Enter poster URL" />
+                        <span asp-validation-for="PosterUrl" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="TrailerURL" class="form-label">Trailer URL</label>
+                        <input asp-for="TrailerURL" class="form-control" placeholder="Enter trailer URL" />
+                        <span asp-validation-for="TrailerURL" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="BoxOffice" class="form-label">Box Office (in $)</label>
+                        <input asp-for="BoxOffice" type="number" class="form-control" placeholder="Enter box office earnings" />
+                        <span asp-validation-for="BoxOffice" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="Rating" class="form-label">Rating (0-10)</label>
+                        <input asp-for="Rating" type="number" step="0.1" min="0" max="10" class="form-control" placeholder="Enter rating" />
+                        <span asp-validation-for="Rating" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="CategoryId" class="form-label">Category</label>
+                        <select asp-for="CategoryId" class="form-select" asp-items="Model.Categories"></select>
+                        <span asp-validation-for="CategoryId" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="DirectorId" class="form-label">Director</label>
+                        <select asp-for="DirectorId" class="form-select" asp-items="Model.Directors"></select>
+                        <span asp-validation-for="DirectorId" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="LanguageId" class="form-label">Language</label>
+                        <select asp-for="LanguageId" class="form-select" asp-items="Model.Languages"></select>
+                        <span asp-validation-for="LanguageId" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="CountryId" class="form-label">Country</label>
+                        <select asp-for="CountryId" class="form-select" asp-items="Model.Countries"></select>
+                        <span asp-validation-for="CountryId" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="ActorIds" class="form-label">Actors</label>
+                        <select asp-for="ActorIds" class="form-select" asp-items="Model.Actors" multiple></select>
+                        <span asp-validation-for="ActorIds" class="text-danger"></span>
+
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="ProducerIds" class="form-label">Producers</label>
+                        <select asp-for="ProducerIds" class="form-select" asp-items="Model.Producers" multiple></select>
+                        <span asp-validation-for="ProducerIds" class="text-danger"></span>
+
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-success btn-lg px-5 mt-3">Edit</button>
+                    <a asp-action="Index" asp-controller="Movies" class="btn btn-secondary btn-lg ml-3 mt-3">Cancel</a>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
