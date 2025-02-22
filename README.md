@@ -51,8 +51,10 @@ The **Movie Management Project** is a comprehensive system for managing movie in
 
 ## Example of Movie Details:
 
+
+![image](https://github.com/user-attachments/assets/34cc82b4-e71f-4a26-94bf-0ec8fb92e2d0)
+
 Here is an example of how movie details are displayed in the system:
-![Ekran görüntüsü 2025-02-22 150630](https://github.com/user-attachments/assets/d36a9729-c89a-48d1-9a27-5a4703c8c788)
 
 ```plaintext
 Title: The Shawshank Redemption
@@ -64,3 +66,7 @@ Category: Drama
 Director: Frank Darabont
 Language: English
 Country: USA.
+```
+
+
+
